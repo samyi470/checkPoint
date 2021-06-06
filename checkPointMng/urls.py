@@ -4,4 +4,14 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
+
+    # las
+    path('las', views.las, name='las'),
+
+    # lax
+    path('lax', views.lax, name='lax'),
+
+    # phx
+    path('phx', views.phx, name='phx'),
 ]
+
