@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import MainMenu
 
-from.models import Throughput
+from .models import Throughput
 
 
 # hello world test
@@ -49,3 +49,11 @@ def phx(request):
                       'item_list': MainMenu.objects.all(),
                   })
 
+
+# data preparation page
+def datapreparation(request):
+    return render(request,
+                  'checkPointMng/datapreparation.html',
+                  {
+                      'item_list': MainMenu.objects.all(),
+                  })

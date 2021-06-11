@@ -13,5 +13,8 @@ urlpatterns = [
 
     # phx
     path('phx', views.phx, name='phx'),
+
+    # data preparation
+    path('datapreparation', views.datapreparation, name='datapreparation'),
 ]
 
