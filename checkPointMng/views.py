@@ -49,3 +49,11 @@ def phx(request):
                       'item_list': MainMenu.objects.all(),
                   })
 
+
+# data preparation page
+def datapreparation(request):
+    return render(request,
+                  'checkPointMng/datapreparation.html',
+                  {
+                      'item_list': MainMenu.objects.all(),
+                  })

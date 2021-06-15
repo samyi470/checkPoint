@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    Data Preparation
+{% endblock title %}
+
+{% block sidenav %}
+    {% for item in item_list %}
+        <li>
+            <a href = "{{ item.link }}"> {{ item.item }} </a>
+        </li>
+    {% endfor %}
+{% endblock sidenav %}
+
+{% block content %}
+    <h1 align ="center">Data Preparation</h1>
+    <p>Data is provided in the link below via pdf files that show a week's worth of throughput for various airports
+        and checkpoints. The data is then extracted to separate csv files for each checkpoint of each airport. Throughput
+        by the hour is then viewable for each checkpoint.</p>
+    <a href="https://www.tsa.gov/foia/readingroom">TSA Total Customer Throughput (Day, Hour, Airport, Checkpoint)</a>
+
+
+{% endblock content %}
