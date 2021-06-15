@@ -32,7 +32,7 @@
         {% block content %}
         <h1>Check Point Management</h1>
         {% endblock content %}
-        <div id="container" style="width: 75%; margin-left: auto; margin-right: auto;">
+        <div id="container" style="width: 100%; margin-left: auto; margin-right: auto;">
             <canvas id="throughput-chart"></canvas>
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.2/chart.min.js"></script>
@@ -47,16 +47,18 @@
           data: {
             datasets: [{
               data: {{ data|safe }},
-              label: 'Throughput'
+              label: 'Throughput',
+              cubicInterpolationMode: 'monotone',
             }],
-            labels: {{ labels|safe }}.map((label) => moment(label, "MM/DD/YYYY"))
+            labels: {{ labels|safe }}.map((label) => moment(label, "MM/DD/YYYY HH:mm:ss"))
           },
           options: {
+            bezierCurve: true,
             scales: {
                 x: {
                     type: 'time',
-                    min: {{ labels|safe }}.map((label) => moment(label, "MM/DD/YYYY"))[0].valueOf(),
-                    max: {{ labels|safe }}.map((label) => moment(label, "MM/DD/YYYY"))[ {{labels|safe}}.length - 1 ].valueOf(),
+                    min: {{ labels|safe }}.map((label) => moment(label, "MM/DD/YYYY HH:mm:ss"))[{{labels|safe}}.length -  150].valueOf(),
+                    max: {{ labels|safe }}.map((label) => moment(label, "MM/DD/YYYY HH:mm:ss"))[ {{labels|safe}}.length - 1 ].valueOf(),
                 },
                 y: {
                     type: 'linear',
@@ -81,8 +83,8 @@
                 },
                 limits: {
                     x: {
-                        min: {{ labels|safe }}.map((label) => moment(label, "MM/DD/YYYY"))[0].valueOf(),
-                        max: {{ labels|safe }}.map((label) => moment(label, "MM/DD/YYYY"))[ {{labels|safe}}.length - 1 ].valueOf(),
+                        min: {{ labels|safe }}.map((label) => moment(label, "MM/DD/YYYY HH:mm:ss"))[0].valueOf(),
+                        max: {{ labels|safe }}.map((label) => moment(label, "MM/DD/YYYY HH:mm:ss"))[ {{labels|safe}}.length - 1 ].valueOf(),
                     },
                     y: {
                         min: Math.min(...{{ data|safe }}) - Math.floor(Math.min(...{{ data|safe }})/50),

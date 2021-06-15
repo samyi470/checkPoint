@@ -8,6 +8,7 @@ class MainMenu(models.Model):
     def __str__(self):
         return self.item
 
+
 class Airport(models.Model):
     name = models.CharField(max_length=200, unique=True)
     code = models.CharField(max_length=3, unique=True)
@@ -20,7 +21,7 @@ class Terminal(models.Model):
 
 class Throughput(models.Model):
 
-    date = models.DateField()
+    date = models.DateTimeField()
     throughput = models.IntegerField()
 
     @property
@@ -29,13 +30,13 @@ class Throughput(models.Model):
 
 
 class AirportThroughput(models.Model):
-    date = models.DateField()
+    date = models.DateTimeField()
     throughput = models.IntegerField()
     airport = models.ForeignKey(Airport, on_delete=models.CASCADE)
 
 
 class TerminalThroughput(models.Model):
-    date = models.DateField()
+    date = models.DateTimeField()
     throughput = models.IntegerField()
     terminal = models.ForeignKey(Terminal, on_delete=models.CASCADE)
     airport = models.ForeignKey(Airport, on_delete=models.CASCADE)

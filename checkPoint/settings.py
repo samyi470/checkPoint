@@ -34,13 +34,13 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     # add app to list of installed apps
     'checkPointMng.apps.CheckpointmngConfig',
-
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'checkPoint',
 ]
 
 MIDDLEWARE = [
