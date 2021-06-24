@@ -41,3 +41,35 @@ class TerminalThroughput(models.Model):
     terminal = models.ForeignKey(Terminal, on_delete=models.CASCADE)
     airport = models.ForeignKey(Airport, on_delete=models.CASCADE)
 
+
+LAS_TERMINALS = (
+    ("Term 1 - AB", "Term 1 - AB"),
+    ("Term 1 - C", "Term 1 - C"),
+    ("Term 1 - CX", "Term 1 - CX"),
+    ("Term 1 - D", "Term 1 - D"),
+    ("Terminal 3 - E Lower (1)", "Terminal 3 - E Lower (1)"),
+    ("Terminal 3 - E Upper", "Terminal 3 - E Upper"),
+)
+
+LAX_TERMINALS = (
+    ("Suites", "Suites"),
+    ("TBIT Main Checkpoint", "TBIT Main Checkpoint"),
+    ("Terminal 1 - Passenger", "Terminal 1 - Passenger"),
+    ("Terminal 2 - Passenger", "Terminal 2 - Passenger"),
+    ("Terminal 3 - Passenger", "Terminal 3 - Passenger"),
+    ("Terminal 4 - FIS", "Terminal 4 - FIS"),
+    ("Terminal 4 - Passenger", "Terminal 4 - Passenger"),
+    ("Terminal 4a - Passenger", "Terminal 4a - Passenger"),
+    ("Terminal 5 - Passenger", "Terminal 5 - Passenger"),
+    ("Terminal 5a - Passenger", "Terminal 5a - Passenger"),
+    ("Terminal 6 - Passenger", "Terminal 6 - Passenger"),
+    ("Terminal 7 - Passenger", "Terminal 7 - Passenger"),
+)
+
+
+class LAXDay(models.Model):
+    terminal = models.CharField(max_length=23, choices=LAX_TERMINALS)
+    primary = models.DateField()
+
+    def __str__(self):
+        return str(self.id)

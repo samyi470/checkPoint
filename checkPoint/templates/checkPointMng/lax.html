@@ -15,18 +15,30 @@
 
 {% block content %}
     <h1 align ="center">LAX Airport</h1>
-    <ul>
-        <li><a href="">TBIT Main Checkpoint</a></li>
-        <li><a href="">Terminal 1 - Passenger</a></li>
-        <li><a href="">Terminal 2 - Passenger</a></li>
-        <li><a href="">Terminal 3 - Passenger</a></li>
-        <li><a href="">Terminal 3A - Passenger</a></li>
-        <li><a href="">Terminal 4 - FIS</a></li>
-        <li><a href="">Terminal 4 - Passenger</a></li>
-        <li><a href="">Terminal 4A - Passenger</a></li>
-        <li><a href="">Terminal 5 - Passenger</a></li>
-        <li><a href="">Terminal 5A - Passenger</a></li>
-        <li><a href="">Terminal 6 - Passenger</a></li>
-        <li><a href="">Terminal 7 - Passenger</a></li>
-    </ul>
+{% if submitted %}
+    <p>
+        terminal: {{ terminal }},
+        primary: {{ primary }},
+        year: {{ year }},
+        month: {{ month }},
+        day: {{ day }},
+        years compared:
+        {% for year in compare %}
+        {{ year }},
+        {% endfor %}
+    </p>
+{% else %}
+    <form action="" enctype="multipart/form-data" method="post" novalidate>
+        <table>
+            {{ form.as_table }}
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Submit">
+                </td>
+            </tr>
+        </table>
+        {% csrf_token %}
+    </form>
+{% endif %}
+
 {% endblock content %}
