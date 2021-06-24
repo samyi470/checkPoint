@@ -66,10 +66,51 @@ LAX_TERMINALS = (
     ("Terminal 7 - Passenger", "Terminal 7 - Passenger"),
 )
 
+MONTHS = (
+    ("January", "January"),
+    ("February", "February"),
+    ("March", "March"),
+    ("April", "April"),
+    ("May", "May"),
+    ("June", "June"),
+    ("July", "July"),
+    ("August", "August"),
+    ("September", "September"),
+    ("October", "October"),
+    ("November", "November"),
+    ("December", "December"),
+)
+
+YEARS = (
+    ("2020", "2020"),
+    ("2019", "2019"),
+    ("2018", "2018"),
+    ("2017", "2017"),
+    ("2016", "2016"),
+    ("2015", "2015"),
+)
+
 
 class LAXDay(models.Model):
     terminal = models.CharField(max_length=23, choices=LAX_TERMINALS)
     primary = models.DateField()
+
+    def __str__(self):
+        return str(self.id)
+
+
+class LAXMonth(models.Model):
+    terminal = models.CharField(max_length=23, choices=LAX_TERMINALS)
+    primaryYear = models.CharField(max_length=4, choices=YEARS)
+    primaryMonth = models.CharField(max_length=9, choices=MONTHS)
+
+    def __str__(self):
+        return str(self.id)
+
+
+class LAXYear(models.Model):
+    terminal = models.CharField(max_length=23, choices=LAX_TERMINALS)
+    primaryYear = models.CharField(max_length=4, choices=YEARS)
 
     def __str__(self):
         return str(self.id)

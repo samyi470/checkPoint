@@ -1,5 +1,3 @@
-import datetime
-
 from django.shortcuts import render
 
 from django.http import HttpResponse
@@ -8,8 +6,11 @@ from .models import MainMenu
 from .models import TerminalThroughput
 
 # LAXDay attempt
+import datetime
 from django.http import HttpResponseRedirect
 from .forms import LAXDayForm
+from .forms import LAXMonthForm
+from .forms import LAXYearForm
 
 
 # hello world test
@@ -58,10 +59,11 @@ def lax(request):
             primary = request.POST.get('primary')
             compare = request.POST.getlist('compare')
 
-            # printing years compared
-            print('years ticked: ')
-            print(compare)
+            # # printing years compared
+            # print('years ticked: ')
+            # print(compare)
 
+            # get years to compare to append to HttpResponseRedirect
             years = ''
             for year in compare:
                 years += '&compare=' + year
@@ -72,26 +74,30 @@ def lax(request):
     else:
         form = LAXDayForm()
 
+        # implement the forms below as "tabs"
+        form2 = LAXMonthForm()
+        form3 = LAXYearForm()
+
         # if (4. submitted is passed as GET parameter, set submitted to true)
         if 'submitted' in request.GET:
             submitted = True
             terminal = request.GET.get('terminal')
             primary = request.GET.get('primary')
             date = datetime.datetime.strptime(primary, '%Y-%m-%d')
-            print(date.year)
+
+            # # access below to utilize ISO calendar
+            # print(date.year)
+            # print(date.month)
+            # print(date.day)
+
             primaryYear = date.strftime('%Y')
-            print(date.month)
             primaryMonth = date.strftime('%m')
-            print(date.day)
             primaryDay = date.strftime('%d')
-
             compare = request.GET.getlist('compare')
-            print(compare)
 
-            print('printing years selected')
-            for year in compare:
-                print(year)
-
+            # print('printing years selected')
+            # for year in compare:
+            #     print(year)
 
     # (2., 5. render .html page)
     return render(request,
@@ -106,6 +112,10 @@ def lax(request):
                       'month': primaryMonth,
                       'day': primaryDay,
                       'compare': compare,
+
+                      # implement the forms below as "tabs"
+                      'form2': form2,
+                      'form3': form3,
                   })
 
 
