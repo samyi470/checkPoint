@@ -9,8 +9,6 @@ from .models import TerminalThroughput
 import datetime
 from django.http import HttpResponseRedirect
 from .forms import LAXDayForm
-from .forms import LAXMonthForm
-from .forms import LAXYearForm
 
 
 # hello world test
@@ -42,11 +40,14 @@ def las(request):
 def lax(request):
     submitted = False
     terminal = ''
-    primary = ''
-    primaryYear = ''
-    primaryMonth = ''
-    primaryDay = ''
-    compare = []
+    start = ''
+    startYear = ''
+    startMonth = ''
+    startDay = ''
+    end = ''
+    endYear = ''
+    endMonth = ''
+    endDay = ''
 
     # if (3. form submitted from .html (POST))
     if request.method == 'POST':
@@ -56,48 +57,35 @@ def lax(request):
         # if valid, save form and return with GET parameter
         if form.is_valid():
             terminal = request.POST.get('terminal')
-            primary = request.POST.get('primary')
-            compare = request.POST.getlist('compare')
+            start = request.POST.get('start')
+            end = request.POST.get('end')
 
-            # # printing years compared
-            # print('years ticked: ')
-            # print(compare)
-
-            # get years to compare to append to HttpResponseRedirect
-            years = ''
-            for year in compare:
-                years += '&compare=' + year
-
-            return HttpResponseRedirect('/lax?submitted=True&terminal=' + terminal + '&primary=' + primary + years)
+            return HttpResponseRedirect('/lax?submitted=True&terminal=' + terminal + '&start=' + start + '&end=' + end)
 
     # else (GET) (1. display an empty form to be filled out for the first time),
     else:
         form = LAXDayForm()
 
-        # implement the forms below as "tabs"
-        form2 = LAXMonthForm()
-        form3 = LAXYearForm()
-
         # if (4. submitted is passed as GET parameter, set submitted to true)
         if 'submitted' in request.GET:
             submitted = True
             terminal = request.GET.get('terminal')
-            primary = request.GET.get('primary')
-            date = datetime.datetime.strptime(primary, '%Y-%m-%d')
+            start = request.GET.get('start')
+            end = request.GET.get('end')
+            startDate = datetime.datetime.strptime(start, '%m/%d/%Y')
+            endDate = datetime.datetime.strptime(end, '%m/%d/%Y')
 
             # # access below to utilize ISO calendar
-            # print(date.year)
-            # print(date.month)
-            # print(date.day)
+            # print(startDate.year)
+            # print(startDate.month)
+            # print(startDate.day)
 
-            primaryYear = date.strftime('%Y')
-            primaryMonth = date.strftime('%m')
-            primaryDay = date.strftime('%d')
-            compare = request.GET.getlist('compare')
-
-            # print('printing years selected')
-            # for year in compare:
-            #     print(year)
+            startYear = startDate.strftime('%Y')
+            startMonth = startDate.strftime('%m')
+            startDay = startDate.strftime('%d')
+            endYear = endDate.strftime('%Y')
+            endMonth = endDate.strftime('%m')
+            endDay = endDate.strftime('%d')
 
     # (2., 5. render .html page)
     return render(request,
@@ -107,15 +95,14 @@ def lax(request):
                       'item_list': MainMenu.objects.all(),
                       'submitted': submitted,
                       'terminal': terminal,
-                      'primary': primary,
-                      'year': primaryYear,
-                      'month': primaryMonth,
-                      'day': primaryDay,
-                      'compare': compare,
-
-                      # implement the forms below as "tabs"
-                      'form2': form2,
-                      'form3': form3,
+                      'start': start,
+                      'startYear': startYear,
+                      'startMonth': startMonth,
+                      'startDay': startDay,
+                      'end': end,
+                      'endYear': endYear,
+                      'endMonth': endMonth,
+                      'endDay': endDay,
                   })
 
 

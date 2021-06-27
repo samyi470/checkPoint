@@ -93,24 +93,8 @@ YEARS = (
 
 class LAXDay(models.Model):
     terminal = models.CharField(max_length=23, choices=LAX_TERMINALS)
-    primary = models.DateField()
-
-    def __str__(self):
-        return str(self.id)
-
-
-class LAXMonth(models.Model):
-    terminal = models.CharField(max_length=23, choices=LAX_TERMINALS)
-    primaryYear = models.CharField(max_length=4, choices=YEARS)
-    primaryMonth = models.CharField(max_length=9, choices=MONTHS)
-
-    def __str__(self):
-        return str(self.id)
-
-
-class LAXYear(models.Model):
-    terminal = models.CharField(max_length=23, choices=LAX_TERMINALS)
-    primaryYear = models.CharField(max_length=4, choices=YEARS)
+    start = models.DateField()
+    end = models.DateField()
 
     def __str__(self):
         return str(self.id)

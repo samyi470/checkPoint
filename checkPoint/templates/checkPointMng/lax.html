@@ -18,54 +18,77 @@
 {% if submitted %}
     <p>
         terminal: {{ terminal }},
-        primary: {{ primary }},
-        year: {{ year }},
-        month: {{ month }},
-        day: {{ day }},
-        years compared:
-        {% for year in compare %}
-        {{ year }},
-        {% endfor %}
+        start: {{ start }},
+        startYear: {{ startYear }},
+        startMonth: {{ startMonth }},
+        startDay: {{ startDay }},
+        end: {{ end }},
+        endYear: {{ endYear }},
+        endMonth: {{ endMonth }},
+        endDay: {{ endDay }},
+
     </p>
 {% else %}
-    <p>Select a day to compare</p>
-    <form action="" enctype="multipart/form-data" method="post" novalidate>
-        <table>
-            {{ form.as_table }}
-            <tr>
-                <td colspan="2">
-                    <input type="submit" value="Submit">
-                </td>
-            </tr>
-        </table>
-        {% csrf_token %}
-    </form>
+    <!doctype html>
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>jQuery UI Datepicker - Select a Date Range</title>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <link rel="stylesheet" href="/resources/demos/style.css">
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-    <p>Select a month to compare</p>
-    <form action="" enctype="multipart/form-data" method="post" novalidate>
-        <table>
-            {{ form2.as_table }}
-            <tr>
-                <td colspan="2">
-                    <input type="submit" value="Submit">
-                </td>
-            </tr>
-        </table>
-        {% csrf_token %}
-    </form>
+        <script>
+            $(document).ready(function() {
+                $(function() {
+                    $("#id_start").datepicker({
+                        defaultDate: "03/01/2015",
+                        changeYear: true,
+                        changeMonth: true,
+                        minDate: new Date(2015, 1 - 1, 1),
+                        maxDate: new Date(2020, 2 - 1, 29),
+                    });
+                });
 
-    <p>Select a day to compare</p>
-    <form action="" enctype="multipart/form-data" method="post" novalidate>
-        <table>
-            {{ form3.as_table }}
-            <tr>
-                <td colspan="2">
-                    <input type="submit" value="Submit">
-                </td>
-            </tr>
-        </table>
-        {% csrf_token %}
-    </form>
+                $(function() {
+                    $("#id_end").datepicker({
+                        changeYear: true,
+                        changeMonth: true,
+                        minDate: new Date(2015, 1 - 1, 1),
+                        maxDate: new Date(2020, 2 - 1, 29),
+                    });
+                });
+
+                $('#id_start').change(function() {
+                    startDate = $(this).datepicker('getDate');
+                    $("#id_end").datepicker("option", "minDate", startDate);
+                    $("#id_end").datepicker("option", "defaultDate", startDate);
+                })
+
+                $('#id_end').change(function() {
+                    endDate = $(this).datepicker('getDate');
+                    $("#id_start").datepicker("option", "maxDate", endDate);
+                })
+            })
+        </script>
+    </head>
+    <body>
+        <p>Select a day to compare</p>
+        <form action="" enctype="multipart/form-data" method="post" novalidate>
+            <table>
+                {{ form.as_table }}
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" value="Submit">
+                    </td>
+                </tr>
+            </table>
+            {% csrf_token %}
+        </form>
+    </body>
+    </html>
 {% endif %}
 
 {% endblock content %}
