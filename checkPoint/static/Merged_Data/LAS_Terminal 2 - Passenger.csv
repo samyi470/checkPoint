@@ -1,0 +1,5 @@
+Index,Date_x,Hour,PMIS - Total Customer Throughput (Unadjusted)_x,Week Number,Weekday,Date_y,PMIS - Total Customer Throughput (Unadjusted)_y
+0,,14:00:00,,25,Sunday,2018-06-24,567.0
+1,,06:00:00,,26,Saturday,2018-06-30,907.0
+2,,08:00:00,,26,Saturday,2018-06-30,832.0
+3,2017-10-14,18:00:00,244.0,41,Saturday,,

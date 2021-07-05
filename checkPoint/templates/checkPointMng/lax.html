@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% load tags %}
+
 {% block title %}
     LAX
 {% endblock title %}
@@ -26,8 +28,32 @@
         endYear: {{ endYear }},
         endMonth: {{ endMonth }},
         endDay: {{ endDay }},
-
     </p>
+<!--    <h3>2015</h3>-->
+<!--    <div class="container" style="width: 100%; margin-left: auto; margin-right: auto;">-->
+<!--        <canvas id="2015-chart"></canvas>-->
+<!--    </div>-->
+<!--    <h3>2016</h3>-->
+<!--    <div class="container" style="width: 100%; margin-left: auto; margin-right: auto;">-->
+<!--        <canvas id="2016-chart"></canvas>-->
+<!--    </div>-->
+<!--    <h3>2017</h3>-->
+<!--    <div class="container" style="width: 100%; margin-left: auto; margin-right: auto;">-->
+<!--        <canvas id="2017-chart"></canvas>-->
+<!--    </div>-->
+<!--    <h3>2018</h3>-->
+<!--    <div class="container" style="width: 100%; margin-left: auto; margin-right: auto;">-->
+<!--        <canvas id="2018-chart"></canvas>-->
+<!--    </div>-->
+<!--    <h3>2019</h3>-->
+<!--    <div class="container" style="width: 100%; margin-left: auto; margin-right: auto;">-->
+<!--        <canvas id="2019-chart"></canvas>-->
+<!--    </div>-->
+<!--    <h3>Prediction</h3>-->
+<!--    <div class="container" style="width: 100%; margin-left: auto; margin-right: auto;">-->
+<!--        <canvas id="prediction-chart"></canvas>-->
+<!--    </div>-->
+
 {% else %}
     <!doctype html>
     <html lang="en">
@@ -92,3 +118,314 @@
 {% endif %}
 
 {% endblock content %}
+
+{% block scripts %}
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.2/chart.min.js"></script>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-zoom/1.0.1/chartjs-plugin-zoom.min.js"></script>-->
+<!--<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0"></script>-->
+<!--<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment@0.1.1"></script>-->
+<!--<script>-->
+
+<!--let labels_2015 = {{ data|get_item:"2015"|get_item:"labels"|safe }}-->
+<!--let data_2015 = {{ data|get_item:"2015"|get_item:"data"|safe }}-->
+
+<!--let config_2015 = {-->
+<!--  type: 'line',-->
+<!--  data: {-->
+<!--    datasets: [{-->
+<!--      data: data_2015,-->
+<!--      label: 'Throughput',-->
+<!--      cubicInterpolationMode: 'monotone',-->
+<!--    }],-->
+<!--    labels: labels_2015.map((label) => moment(label, "MM/DD/YYYY HH:mm:ss"))-->
+<!--  },-->
+<!--  options: {-->
+<!--    bezierCurve: true,-->
+<!--    scales: {-->
+<!--        x: {-->
+<!--            type: 'time',-->
+<!--            min: labels_2015.map((label) => moment(label, "MM/DD/YYYY HH:mm:ss"))[0].valueOf(),-->
+<!--            max: labels_2015.map((label) => moment(label, "MM/DD/YYYY HH:mm:ss"))[ labels_2015.length - 1 ].valueOf(),-->
+<!--        },-->
+<!--    },-->
+<!--    plugins: {-->
+<!--      zoom: {-->
+<!--        zoom: {-->
+<!--          wheel: {-->
+<!--            enabled: true,-->
+<!--          },-->
+<!--          pinch: {-->
+<!--            enabled: true-->
+<!--          },-->
+<!--          mode: 'x',-->
+<!--        },-->
+<!--        pan: {-->
+<!--            enabled: true,-->
+<!--            mode: 'x',-->
+<!--        },-->
+<!--        limits: {-->
+<!--            x: {-->
+<!--                min: labels_2015.map((label) => moment(label, "MM/DD/YYYY HH:mm:ss"))[0].valueOf(),-->
+<!--                max: labels_2015.map((label) => moment(label, "MM/DD/YYYY HH:mm:ss"))[ labels_2015.length - 1 ].valueOf(),-->
+<!--            },-->
+<!--        }-->
+<!--      }-->
+<!--    }-->
+<!--  },-->
+<!--};-->
+
+
+<!--let labels_2016 = {{ data|get_item:"2016"|get_item:"labels"|safe }}-->
+<!--let data_2016 = {{ data|get_item:"2016"|get_item:"data"|safe }}-->
+
+<!--let config_2016 = {-->
+<!--  type: 'line',-->
+<!--  data: {-->
+<!--    datasets: [{-->
+<!--      data: data_2016,-->
+<!--      label: 'Throughput',-->
+<!--      cubicInterpolationMode: 'monotone',-->
+<!--    }],-->
+<!--    labels: labels_2016.map((label) => moment(label, "MM/DD/YYYY HH:mm:ss"))-->
+<!--  },-->
+<!--  options: {-->
+<!--    bezierCurve: true,-->
+<!--    scales: {-->
+<!--        x: {-->
+<!--            type: 'time',-->
+<!--            min: labels_2016.map((label) => moment(label, "MM/DD/YYYY HH:mm:ss"))[0].valueOf(),-->
+<!--            max: labels_2016.map((label) => moment(label, "MM/DD/YYYY HH:mm:ss"))[ labels_2016.length - 1 ].valueOf(),-->
+<!--        },-->
+<!--    },-->
+<!--    plugins: {-->
+<!--      zoom: {-->
+<!--        zoom: {-->
+<!--          wheel: {-->
+<!--            enabled: true,-->
+<!--          },-->
+<!--          pinch: {-->
+<!--            enabled: true-->
+<!--          },-->
+<!--          mode: 'x',-->
+<!--        },-->
+<!--        pan: {-->
+<!--            enabled: true,-->
+<!--            mode: 'x',-->
+<!--        },-->
+<!--        limits: {-->
+<!--            x: {-->
+<!--                min: labels_2016.map((label) => moment(label, "MM/DD/YYYY HH:mm:ss"))[0].valueOf(),-->
+<!--                max: labels_2016.map((label) => moment(label, "MM/DD/YYYY HH:mm:ss"))[ labels_2016.length - 1 ].valueOf(),-->
+<!--            },-->
+<!--        }-->
+<!--      }-->
+<!--    }-->
+<!--  },-->
+<!--};-->
+
+
+<!--let labels_2017 = {{ data|get_item:"2017"|get_item:"labels"|safe }}-->
+<!--let data_2017 = {{ data|get_item:"2017"|get_item:"data"|safe }}-->
+
+<!--let config_2017 = {-->
+<!--  type: 'line',-->
+<!--  data: {-->
+<!--    datasets: [{-->
+<!--      data: data_2017,-->
+<!--      label: 'Throughput',-->
+<!--      cubicInterpolationMode: 'monotone',-->
+<!--    }],-->
+<!--    labels: labels_2017.map((label) => moment(label, "MM/DD/YYYY HH:mm:ss"))-->
+<!--  },-->
+<!--  options: {-->
+<!--    bezierCurve: true,-->
+<!--    scales: {-->
+<!--        x: {-->
+<!--            type: 'time',-->
+<!--            min: labels_2017.map((label) => moment(label, "MM/DD/YYYY HH:mm:ss"))[0].valueOf(),-->
+<!--            max: labels_2017.map((label) => moment(label, "MM/DD/YYYY HH:mm:ss"))[ labels_2017.length - 1 ].valueOf(),-->
+<!--        },-->
+<!--    },-->
+<!--    plugins: {-->
+<!--      zoom: {-->
+<!--        zoom: {-->
+<!--          wheel: {-->
+<!--            enabled: true,-->
+<!--          },-->
+<!--          pinch: {-->
+<!--            enabled: true-->
+<!--          },-->
+<!--          mode: 'x',-->
+<!--        },-->
+<!--        pan: {-->
+<!--            enabled: true,-->
+<!--            mode: 'x',-->
+<!--        },-->
+<!--        limits: {-->
+<!--            x: {-->
+<!--                min: labels_2017.map((label) => moment(label, "MM/DD/YYYY HH:mm:ss"))[0].valueOf(),-->
+<!--                max: labels_2017.map((label) => moment(label, "MM/DD/YYYY HH:mm:ss"))[ labels_2017.length - 1 ].valueOf(),-->
+<!--            },-->
+<!--        }-->
+<!--      }-->
+<!--    }-->
+<!--  },-->
+<!--};-->
+
+<!--let labels_2018 = {{ data|get_item:"2018"|get_item:"labels"|safe }}-->
+<!--let data_2018 = {{ data|get_item:"2018"|get_item:"data"|safe }}-->
+
+<!--let config_2018 = {-->
+<!--  type: 'line',-->
+<!--  data: {-->
+<!--    datasets: [{-->
+<!--      data: data_2018,-->
+<!--      label: 'Throughput',-->
+<!--      cubicInterpolationMode: 'monotone',-->
+<!--    }],-->
+<!--    labels: labels_2018.map((label) => moment(label, "MM/DD/YYYY HH:mm:ss"))-->
+<!--  },-->
+<!--  options: {-->
+<!--    bezierCurve: true,-->
+<!--    scales: {-->
+<!--        x: {-->
+<!--            type: 'time',-->
+<!--            min: labels_2018.map((label) => moment(label, "MM/DD/YYYY HH:mm:ss"))[0].valueOf(),-->
+<!--            max: labels_2018.map((label) => moment(label, "MM/DD/YYYY HH:mm:ss"))[ labels_2018.length - 1 ].valueOf(),-->
+<!--        },-->
+<!--    },-->
+<!--    plugins: {-->
+<!--      zoom: {-->
+<!--        zoom: {-->
+<!--          wheel: {-->
+<!--            enabled: true,-->
+<!--          },-->
+<!--          pinch: {-->
+<!--            enabled: true-->
+<!--          },-->
+<!--          mode: 'x',-->
+<!--        },-->
+<!--        pan: {-->
+<!--            enabled: true,-->
+<!--            mode: 'x',-->
+<!--        },-->
+<!--        limits: {-->
+<!--            x: {-->
+<!--                min: labels_2018.map((label) => moment(label, "MM/DD/YYYY HH:mm:ss"))[0].valueOf(),-->
+<!--                max: labels_2018.map((label) => moment(label, "MM/DD/YYYY HH:mm:ss"))[ labels_2018.length - 1 ].valueOf(),-->
+<!--            },-->
+<!--        }-->
+<!--      }-->
+<!--    }-->
+<!--  },-->
+<!--};-->
+
+<!--let labels_2019 = {{ data|get_item:"2019"|get_item:"labels"|safe }}-->
+<!--let data_2019 = {{ data|get_item:"2019"|get_item:"data"|safe }}-->
+
+<!--let config_2019 = {-->
+<!--  type: 'line',-->
+<!--  data: {-->
+<!--    datasets: [{-->
+<!--      data: data_2019,-->
+<!--      label: 'Throughput',-->
+<!--      cubicInterpolationMode: 'monotone',-->
+<!--    }],-->
+<!--    labels: labels_2019.map((label) => moment(label, "MM/DD/YYYY HH:mm:ss"))-->
+<!--  },-->
+<!--  options: {-->
+<!--    bezierCurve: true,-->
+<!--    scales: {-->
+<!--        x: {-->
+<!--            type: 'time',-->
+<!--            min: labels_2019.map((label) => moment(label, "MM/DD/YYYY HH:mm:ss"))[0].valueOf(),-->
+<!--            max: labels_2019.map((label) => moment(label, "MM/DD/YYYY HH:mm:ss"))[ labels_2019.length - 1 ].valueOf(),-->
+<!--        },-->
+<!--    },-->
+<!--    plugins: {-->
+<!--      zoom: {-->
+<!--        zoom: {-->
+<!--          wheel: {-->
+<!--            enabled: true,-->
+<!--          },-->
+<!--          pinch: {-->
+<!--            enabled: true-->
+<!--          },-->
+<!--          mode: 'x',-->
+<!--        },-->
+<!--        pan: {-->
+<!--            enabled: true,-->
+<!--            mode: 'x',-->
+<!--        },-->
+<!--        limits: {-->
+<!--            x: {-->
+<!--                min: labels_2019.map((label) => moment(label, "MM/DD/YYYY HH:mm:ss"))[0].valueOf(),-->
+<!--                max: labels_2019.map((label) => moment(label, "MM/DD/YYYY HH:mm:ss"))[ labels_2019.length - 1 ].valueOf(),-->
+<!--            },-->
+<!--        }-->
+<!--      }-->
+<!--    }-->
+<!--  },-->
+<!--};-->
+
+<!--let labels_prediction = {{ data|get_item:"prediction"|get_item:"labels"|safe }}-->
+<!--let data_prediction = {{ data|get_item:"prediction"|get_item:"data"|safe }}-->
+
+<!--let config_prediction = {-->
+<!--  type: 'line',-->
+<!--  data: {-->
+<!--    datasets: [{-->
+<!--      data: data_prediction,-->
+<!--      label: 'Throughput',-->
+<!--      cubicInterpolationMode: 'monotone',-->
+<!--    }],-->
+<!--    labels: labels_prediction.map((label) => moment(label, "MM/DD/YYYY HH:mm:ss"))-->
+<!--  },-->
+<!--  options: {-->
+<!--    bezierCurve: true,-->
+<!--    scales: {-->
+<!--        x: {-->
+<!--            type: 'time',-->
+<!--            min: labels_prediction.map((label) => moment(label, "MM/DD/YYYY HH:mm:ss"))[0].valueOf(),-->
+<!--            max: labels_prediction.map((label) => moment(label, "MM/DD/YYYY HH:mm:ss"))[ labels_prediction.length - 1 ].valueOf(),-->
+<!--        },-->
+<!--    },-->
+<!--    plugins: {-->
+<!--      zoom: {-->
+<!--        zoom: {-->
+<!--          wheel: {-->
+<!--            enabled: true,-->
+<!--          },-->
+<!--          pinch: {-->
+<!--            enabled: true-->
+<!--          },-->
+<!--          mode: 'x',-->
+<!--        },-->
+<!--        pan: {-->
+<!--            enabled: true,-->
+<!--            mode: 'x',-->
+<!--        },-->
+<!--        limits: {-->
+<!--            x: {-->
+<!--                min: labels_prediction.map((label) => moment(label, "MM/DD/YYYY HH:mm:ss"))[0].valueOf(),-->
+<!--                max: labels_prediction.map((label) => moment(label, "MM/DD/YYYY HH:mm:ss"))[ labels_prediction.length - 1 ].valueOf(),-->
+<!--            },-->
+<!--        }-->
+<!--      }-->
+<!--    }-->
+<!--  },-->
+<!--};-->
+
+window.onload = function() {
+<!--  window.lineChart2015 = new Chart(document.getElementById('2015-chart').getContext('2d'), config_2015);-->
+<!--  window.lineChart2016 = new Chart(document.getElementById('2016-chart').getContext('2d'), config_2016);-->
+<!--  window.lineChart2017 = new Chart(document.getElementById('2017-chart').getContext('2d'), config_2017);-->
+<!--  window.lineChart2018 = new Chart(document.getElementById('2018-chart').getContext('2d'), config_2018);-->
+<!--  window.lineChart2019 = new Chart(document.getElementById('2019-chart').getContext('2d'), config_2019);-->
+<!--  window.lineChartPrediction = new Chart(document.getElementById('prediction-chart').getContext('2d'), config_prediction);-->
+};
+
+</script>
+
+{% endblock scripts %}
