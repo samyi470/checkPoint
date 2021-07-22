@@ -19,6 +19,17 @@
     <h1 align ="center">LAX Airport</h1>
 {% if submitted %}
     <p>
+        <a href="las">
+            LAS
+        </a>
+        <a href="lax">
+            LAX
+        </a>
+        <a href="phx">
+            PHX
+        </a>
+    </p>
+    <p>
         terminal: {{ terminal }},
         start: {{ start }},
         startYear: {{ startYear }},
@@ -91,6 +102,18 @@
                     startDate = $(this).datepicker('getDate');
                     $("#id_end").datepicker("option", "minDate", startDate);
                     $("#id_end").datepicker("option", "defaultDate", startDate);
+
+                    <!-- to set the maxDate of the to calendar as lesser of +1 M or maxDate -->
+                    maxDate = $(this).datepicker("option", "maxDate");
+
+                    nextMonthDate = $(this).datepicker('getDate');
+                    nextMonthDate.setMonth(nextMonthDate.getMonth() + 1);
+
+                    if (nextMonthDate < maxDate) {
+                        $("#id_end").datepicker("option", "maxDate", nextMonthDate);
+                    } else {
+                        $("#id_end").datepicker("option", "maxDate", maxDate);
+                    }
                 })
 
                 $('#id_end').change(function() {
@@ -101,6 +124,17 @@
         </script>
     </head>
     <body>
+        <p>
+            <a href="las">
+                LAS
+            </a>
+            <a href="lax">
+                LAX
+            </a>
+            <a href="phx">
+                PHX
+            </a>
+        </p>
         <p>Select a day to compare</p>
         <form action="" enctype="multipart/form-data" method="post" novalidate>
             <table>

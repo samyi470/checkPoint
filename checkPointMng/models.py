@@ -1,6 +1,11 @@
 from django.db import models
 
 
+# following commands after making any changes:
+#   cd bookEx (\, PythonSpace, checkPoint)
+#   python manage.py makemigrations
+#   python manage.py migrate
+
 class MainMenu(models.Model):
     item = models.CharField(max_length=200, unique=True)
     link = models.CharField(max_length=200, unique=True)
@@ -66,33 +71,36 @@ LAX_TERMINALS = (
     ("Terminal 7 - Passenger", "Terminal 7 - Passenger"),
 )
 
-MONTHS = (
-    ("January", "January"),
-    ("February", "February"),
-    ("March", "March"),
-    ("April", "April"),
-    ("May", "May"),
-    ("June", "June"),
-    ("July", "July"),
-    ("August", "August"),
-    ("September", "September"),
-    ("October", "October"),
-    ("November", "November"),
-    ("December", "December"),
-)
-
-YEARS = (
-    ("2020", "2020"),
-    ("2019", "2019"),
-    ("2018", "2018"),
-    ("2017", "2017"),
-    ("2016", "2016"),
-    ("2015", "2015"),
+PHX_TERMINALS = (
+    ("T-2", "T-2"),
+    ("T-3 NORTH", "T-3 NORTH"),
+    ("T-4 A", "T-4 A"),
+    ("T-4 B", "T-4 B"),
+    ("T-4 C", "T-4 C"),
+    ("T-4 D", "T-4 D"),
 )
 
 
 class LAXDay(models.Model):
     terminal = models.CharField(max_length=23, choices=LAX_TERMINALS)
+    start = models.DateField()
+    end = models.DateField()
+
+    def __str__(self):
+        return str(self.id)
+
+
+class LASDay(models.Model):
+    terminal = models.CharField(max_length=24, choices=LAS_TERMINALS)
+    start = models.DateField()
+    end = models.DateField()
+
+    def __str__(self):
+        return str(self.id)
+
+
+class PHXDay(models.Model):
+    terminal = models.CharField(max_length=9, choices=PHX_TERMINALS)
     start = models.DateField()
     end = models.DateField()
 

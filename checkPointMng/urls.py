@@ -16,5 +16,8 @@ urlpatterns = [
 
     # data preparation
     path('datapreparation', views.datapreparation, name='datapreparation'),
+
+    # passenger forecasting
+    path('passengerforecasting', views.passengerforecasting, name='passengerforecasting'),
 ]
 

@@ -1,13 +1,9 @@
 from django import forms
 from django.forms import ModelForm
 
-# LAX terminal search attempt
 from .models import LAXDay
-
-
-# class to hold calendar selection
-# class DateInput(forms.DateInput):
-#     input_type = 'date'
+from .models import LASDay
+from .models import PHXDay
 
 
 class LAXDayForm(ModelForm):
@@ -21,7 +17,39 @@ class LAXDayForm(ModelForm):
 
         # to select a date from calendar
         widgets = {
-            # 'primary': DateInput(),
             'start': forms.DateInput(attrs={'class': 'datepicker'}),
             'end': forms.DateInput(attrs={'class': 'datepicker'}),
         }
+
+
+class LASDayForm(ModelForm):
+    class Meta:
+        model = LASDay
+        fields = [
+            'terminal',
+            'start',
+            'end',
+        ]
+
+        # to select a date from calendar
+        widgets = {
+            'start': forms.DateInput(attrs={'class': 'datepicker'}),
+            'end': forms.DateInput(attrs={'class': 'datepicker'}),
+        }
+
+
+class PHXDayForm(ModelForm):
+    class Meta:
+        model = PHXDay
+        fields = [
+            'terminal',
+            'start',
+            'end',
+        ]
+
+        # to select a date from calendar
+        widgets = {
+            'start': forms.DateInput(attrs={'class': 'datepicker'}),
+            'end': forms.DateInput(attrs={'class': 'datepicker'}),
+        }
+
